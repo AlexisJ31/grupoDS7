@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nosotros – LUXE STORE</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo"><a href="../index.html">LUXE<span>STORE</span></a></div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="tienda.html">Tienda</a></li>
+      <li><a href="nosotros.html" class="active">Nosotros</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-icons">
+      <button class="icon-btn">🔍</button>
+      <button class="icon-btn cart-btn" onclick="toggleCart()">🛒 <span class="cart-count" id="cartCount">0</span></button>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Inicio</a><a href="tienda.html">Tienda</a>
+    <a href="nosotros.html">Nosotros</a><a href="contacto.html">Contacto</a>
+  </div>
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header"><h3>Tu Carrito</h3><button onclick="toggleCart()">✕</button></div>
+    <div class="cart-items" id="cartItems"><p class="cart-empty">Tu carrito está vacío</p></div>
+    <div class="cart-footer"><div class="cart-total">Total: <strong id="cartTotal">$0.00</strong></div></div>
+  </aside>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="breadcrumb"><a href="../index.html">Inicio</a> / Nosotros</p>
+    <h1>Nuestra Historia</h1>
+    <p>Más de una década vistiendo a quienes exigen lo mejor</p>
+  </div>
+
+  <!-- HISTORIA -->
+  <section class="section">
+    <div class="container about-grid">
+      <div class="about-img animate">🏛️</div>
+      <div class="about-text animate">
+        <h2>Nacimos para <em>redefinir</em> la moda premium</h2>
+        <p>Fundada en 2013 en Ciudad de Panamá, LUXE STORE surgió de la visión de crear una marca que reuniera las más finas tendencias internacionales con la autenticidad de nuestra cultura latinoamericana.</p>
+        <p>Cada prenda que ofrecemos pasa por un riguroso proceso de selección. Trabajamos directamente con artesanos y fabricantes en Italia, Francia y Japón para garantizar que solo los mejores materiales lleguen a tu guardarropa.</p>
+        <p>Hoy, con más de 50,000 clientes satisfechos en toda Latinoamérica, continuamos con la misión original: hacer accesible la moda de verdadero lujo.</p>
+        <a href="tienda.html" class="btn-primary" style="margin-top:1.5rem;">Explorar colección</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES -->
+  <section class="section" style="background:var(--light);">
+    <div class="container">
+      <h2 class="section-title">Nuestros Valores</h2>
+      <div class="values-grid">
+        <div class="value-card animate">
+          <div class="value-icon">✨</div>
+          <h3>Calidad Sin Compromiso</h3>
+          <p>Solo trabajamos con los mejores materiales del mundo. Si no supera nuestro estándar, no llega a ti.</p>
+        </div>
+        <div class="value-card animate">
+          <div class="value-icon">🌿</div>
+          <h3>Sostenibilidad</h3>
+          <p>Comprometidos con el medio ambiente. Nuestros empaques son 100% reciclables y compensamos nuestra huella de carbono.</p>
+        </div>
+        <div class="value-card animate">
+          <div class="value-icon">🤝</div>
+          <h3>Comunidad</h3>
+          <p>Cada compra apoya a artesanos locales. El 2% de nuestras ventas se destina a programas de capacitación textil.</p>
+        </div>
+        <div class="value-card animate">
+          <div class="value-icon">🎯</div>
+          <h3>Innovación</h3>
+          <p>Anticipamos tendencias, no las seguimos. Nuestro equipo de diseño viaja tres veces al año a las semanas de la moda.</p>
+        </div>
+        <div class="value-card animate">
+          <div class="value-icon">💬</div>
+          <h3>Servicio Excepcional</h3>
+          <p>Atención personalizada 24/7. Tu satisfacción es nuestra mayor recompensa y lo que nos hace diferentes.</p>
+        </div>
+        <div class="value-card animate">
+          <div class="value-icon">🔒</div>
+          <h3>Confianza</h3>
+          <p>Transacciones seguras, política de devoluciones sin preguntas y total transparencia en cada proceso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIFRAS -->
+  <section class="section promo-banner">
+    <div class="container">
+      <h2 class="section-title" style="color:white;">LUXE en números</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;">
+        <div class="animate">
+          <div style="font-family:var(--font-display);font-size:3.5rem;font-weight:300;color:var(--gold);">50K+</div>
+          <p style="font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);">Clientes</p>
+        </div>
+        <div class="animate">
+          <div style="font-family:var(--font-display);font-size:3.5rem;font-weight:300;color:var(--gold);">12</div>
+          <p style="font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);">Años de trayectoria</p>
+        </div>
+        <div class="animate">
+          <div style="font-family:var(--font-display);font-size:3.5rem;font-weight:300;color:var(--gold);">300+</div>
+          <p style="font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);">Productos</p>
+        </div>
+        <div class="animate">
+          <div style="font-family:var(--font-display);font-size:3.5rem;font-weight:300;color:var(--gold);">18</div>
+          <p style="font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);">Países</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Nuestro Equipo</h2>
+      <div class="team-grid">
+        <div class="team-card animate">
+          <div class="team-avatar">👩‍💼</div>
+          <h3>Valentina Ramos</h3>
+          <p>CEO & Fundadora</p>
+        </div>
+        <div class="team-card animate">
+          <div class="team-avatar">👨‍🎨</div>
+          <h3>Andrés Molina</h3>
+          <p>Director Creativo</p>
+        </div>
+        <div class="team-card animate">
+          <div class="team-avatar">👩‍💻</div>
+          <h3>Camila Torres</h3>
+          <p>Head of Marketing</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="section container">
+    <h2 class="section-title">Detrás de escena</h2>
+    <div class="video-wrapper animate">
+      <iframe width="100%" height="400"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        title="Proceso creativo LUXE STORE"
+        frameborder="0" allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">LUXE<span>STORE</span></div>
+        <p>Moda premium con diseño atemporal.</p>
+        <div class="social-links"><a>📸</a><a>📘</a><a>🐦</a><a>🎵</a></div>
+      </div>
+      <div class="footer-col"><h4>Tienda</h4><a href="tienda.html">Mujer</a><a href="tienda.html">Hombre</a><a href="tienda.html">Accesorios</a></div>
+      <div class="footer-col"><h4>Info</h4><a href="nosotros.html">Nosotros</a><a href="contacto.html">Contacto</a></div>
+      <div class="footer-col"><h4>Soporte</h4><a href="#">Devoluciones</a><a href="#">FAQ</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 LUXE STORE – HTML5 & CSS3</p></div>
+  </footer>
+
+  <audio id="bg-audio" loop><source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3"/></audio>
+  <button class="audio-btn" onclick="toggleAudio()" id="audioBtn">🔇</button>
+
+  <script src="../js/products.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
