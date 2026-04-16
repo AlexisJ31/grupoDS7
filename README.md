@@ -5,4 +5,4 @@ Aquí trabajaremos la interfaz gráfica con HTML5, CSS3, Bootstrap 5 y la lógic
 
 ---
 
-Link de mockup en figma: https://www.figma.com/design/puWfAZfcGl02qB5vP2eJbE/Mockup-LUXE-HOME?node-id=0-1&m=dev&t=2quxde0LnQAnVwax-1
+Link de mockup en figma: https://www.figma.com/design/puWfAZfcGl02qB5vP2eJbE/Mockup-LUXE-HOME?node-id=0-1&t=2quxde0LnQAnVwax-1
