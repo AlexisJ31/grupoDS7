@@ -26,7 +26,7 @@ Una vez que termine de descargar, entra a la carpeta que se acaba de crear:
 Para crear tu propia rama y moverte a ella automáticamente, ejecuta este comando pero **poniendo tu nombre sin espacios** (puedes usar guiones):
 
     git checkout -b tu-nombre
-
+    
 *(Ejemplo: `git checkout -b juan-perez`)*
 
 ### Paso 5: Subir tu rama a GitHub
