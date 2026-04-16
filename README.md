@@ -41,3 +41,5 @@ En este momento, tu rama solo existe en tu computadora. Para que los demás poda
 🎉 **¡Y listo!** Ya estás configurado. Todo el código que escribas y guardes a partir de ahora estará aislado en tu propia rama. 
 
 **Nota:** Cuando termines una tarea y quieras agregarla al proyecto final, avísale al administrador para hacer un *Pull Request*.
+
+Link de mockup en figma: https://www.figma.com/design/puWfAZfcGl02qB5vP2eJbE/Mockup-LUXE-HOME?node-id=0-1&m=dev&t=2quxde0LnQAnVwax-1
