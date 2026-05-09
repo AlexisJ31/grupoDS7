@@ -1,0 +1,54 @@
+<svg width="100%" viewBox="0 0 680 420" role="img" xmlns="http://www.w3.org/2000/svg" style="">
+  <title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">LuxeStore logo — corona minimalista dorada sobre fondo beige</title>
+  <desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Logo premium para LuxeStore: corona geométrica en dorado sobre wordmark elegante en marrón oscuro cálido, con fondo beige crema y cenefa dorada.</desc>
+
+  <defs>
+    
+  </defs>
+
+  <!-- Background card -->
+  <rect x="90" y="18" width="500" height="384" rx="3" style="fill:rgb(246, 237, 217);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Inner decorative border -->
+  <rect x="104" y="32" width="472" height="356" rx="2" style="fill:none;stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- ── Crown ── -->
+  <!-- Crown outline: 3 peaks, zigzag profile -->
+  <path d="M295 200 L314 142 L333 168 L340 126 L347 168 L366 142 L385 200" style="fill:none;stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:1.4px;stroke-linecap:round;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Crown base bar -->
+  <line x1="295" y1="200" x2="385" y2="200" style="stroke-linecap:square;fill:none;stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:1.4px;stroke-linecap:square;stroke-linejoin:round;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- Thin second bar for depth -->
+  <line x1="295" y1="207" x2="385" y2="207" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Peak ornament dots -->
+  <circle cx="314" cy="142" r="3" style="fill:rgb(196, 151, 59);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="340" cy="126" r="3.5" style="fill:rgb(196, 151, 59);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <circle cx="366" cy="142" r="3" style="fill:rgb(196, 151, 59);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- Small diamond at base center -->
+  <polygon points="340,196 344.5,200 340,204.5 335.5,200" style="fill:rgb(196, 151, 59);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- ── Brand name ── -->
+  <text x="340" y="256" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="400" letter-spacing="10" fill="#2D2115" style="fill:rgb(45, 33, 21);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, &quot;Times New Roman&quot;, serif;font-size:30px;font-weight:400;text-anchor:middle;dominant-baseline:auto">LUXESTORE</text>
+
+  <!-- ── Divider with diamond ── -->
+  <line x1="148" y1="276" x2="246" y2="276" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <polygon points="340,271 345,276 340,281 335,276" style="fill:rgb(196, 151, 59);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="434" y1="276" x2="532" y2="276" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- ── Tagline ── -->
+  <text x="340" y="310" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="10.5" font-weight="400" letter-spacing="3.5" fill="#A07B3A" style="fill:rgb(160, 123, 58);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, &quot;Times New Roman&quot;, serif;font-size:10.5px;font-weight:400;text-anchor:middle;dominant-baseline:auto">PREMIUM FASHION &amp; ACCESSORIES</text>
+
+  <!-- Corner ornaments inside border -->
+  <!-- TL -->
+  <line x1="104" y1="52" x2="124" y2="52" stroke="#C4973B" stroke-width="0.6" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="124" y1="32" x2="124" y2="52" stroke="#C4973B" stroke-width="0.6" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- TR -->
+  <line x1="556" y1="52" x2="576" y2="52" stroke="#C4973B" stroke-width="0.6" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="556" y1="32" x2="556" y2="52" stroke="#C4973B" stroke-width="0.6" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- BL -->
+  <line x1="104" y1="368" x2="124" y2="368" stroke="#C4973B" stroke-width="0.6" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="124" y1="368" x2="124" y2="388" stroke="#C4973B" stroke-width="0.6" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <!-- BR -->
+  <line x1="556" y1="368" x2="576" y2="368" stroke="#C4973B" stroke-width="0.6" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <line x1="556" y1="368" x2="556" y2="388" stroke="#C4973B" stroke-width="0.6" style="fill:rgb(0, 0, 0);stroke:rgb(196, 151, 59);color:rgb(255, 255, 255);stroke-width:0.6px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+</svg>
