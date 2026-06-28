@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tienda – LUXE STORE</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <a href="../index.html">
+        <img src="../luxestore_logo.svg" alt="LUXE STORE"/>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="tienda.html" class="active">Tienda</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-icons">
+      <a href="tienda.html" class="icon-btn" aria-label="Tienda">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="tienda.html" class="icon-btn cart-btn" aria-label="Tienda">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </a>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Inicio</a>
+    <a href="tienda.html">Tienda</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="breadcrumb"><a href="../index.html">Inicio</a> / Tienda</p>
+    <h1>Nuestra Tienda</h1>
+    <p>Descubre nuestra colección completa de moda premium</p>
+  </div>
+
+  <!-- SHOP LAYOUT -->
+  <div class="container shop-layout">
+
+    <!-- SIDEBAR FILTROS -->
+    <aside class="filters-sidebar">
+      <h3>Filtros</h3>
+      <div class="filter-group">
+        <h4>Categoría</h4>
+        <label><input type="checkbox" name="cat" value="mujer" checked/> Mujer</label>
+        <label><input type="checkbox" name="cat" value="hombre" checked/> Hombre</label>
+        <label><input type="checkbox" name="cat" value="accesorios" checked/> Accesorios</label>
+      </div>
+      <div class="filter-group">
+        <h4>Precio</h4>
+        <label><input type="radio" name="price" value="all" checked/> Todos</label>
+        <label><input type="radio" name="price" value="low"/> Hasta $100</label>
+        <label><input type="radio" name="price" value="mid"/> $100 – $200</label>
+        <label><input type="radio" name="price" value="high"/> Más de $200</label>
+      </div>
+      <div class="filter-group">
+        <h4>Estado</h4>
+        <label><input type="checkbox" name="estado" value="nuevo" checked/> Nuevo</label>
+        <label><input type="checkbox" name="estado" value="sale" checked/> Sale</label>
+      </div>
+      <p style="font-size:0.78rem;color:var(--gray);margin-top:1rem;">Esta es una página estática. Los filtros son orientativos.</p>
+    </aside>
+
+    <!-- PRODUCTOS -->
+    <div class="shop-content">
+      <div class="sort-bar">
+        <p>Mostrando <strong>12</strong> productos</p>
+      </div>
+      <div class="products-grid">
+
+        <!-- MUJER -->
+        <article class="product-card animate">
+          <div class="product-img" style="background:#f0e8df">
+            <span class="product-badge">Sale</span>
+            <img src="../img/Blazer Clásico Beige.jpg" alt="Blazer Clásico Beige"/>
+          </div>
+          <div class="product-info">
+            <h3>Blazer Clásico Beige</h3>
+            <p>Blazer atemporal de corte estructurado</p>
+            <div class="product-footer">
+              <div class="product-price"><span class="old-price">$239.99</span> $189.99</div>
+              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card animate">
+          <div class="product-img" style="background:#f0e8df">
+            <span class="product-badge">Nuevo</span>
+            <img src="../img/Vestido Midi Floral.jpg" alt="Vestido Midi Floral"/>
+          </div>
+          <div class="product-info">
+            <h3>Vestido Midi Floral</h3>
+            <p>Estampado floral en seda natural</p>
+            <div class="product-footer">
+              <div class="product-price">$145.00</div>
+              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card animate">
+          <div class="product-img" style="background:#e8ede5">
+            <img src="../img/Camisa Lino Premium.jpg" alt="Camisa Lino Premium"/>
+          </div>
+          <div class="product-info">
+            <h3>Camisa Lino Premium</h3>
+            <p>Lino 100% lavado a la piedra</p>
+            <div class="product-footer">
+              <div class="product-price">$98.00</div>
+              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card animate">
+          <div class="product-img" style="background:#ece7f0">
+            <span class="product-badge">Nuevo</span>
+            <img src="../img/Bolso Piel Topo.jpg" alt="Bolso Piel Topo"/>
+          </div>
+          <div class="product-info">
+            <h3>Bolso Piel Topo</h3>
+            <p>Piel italiana cosida a mano</p>
+            <div class="product-footer">
+              <div class="product-price">$265.00</div>
+              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
