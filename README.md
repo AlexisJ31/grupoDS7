@@ -74,4 +74,27 @@ A veces necesitarás usar el código que otro compañero ya subió a su propia r
    ```
 *(Si los dos modificaron exactamente las mismas líneas del mismo archivo, VS Code te avisará que hay un "Conflicto" y tendrás que elegir qué código conservar antes de poder continuar).*
 
-¡Mucho éxito a todos en el desarrollo! 🚀
+## 🗓️ Cronograma — Proyecto #2
+
+**Semana del miércoles 24 al martes 30 de junio**
+Login, dashboard, sistema de roles, carrito de compras y API interna sobre la arquitectura MVC.
+
+### Equipo y responsabilidad principal
+
+| Persona | Responsabilidad principal |
+|---|---|
+| **Alexis** | Arquitectura MVC, sistema de roles y permisos, API interna del dashboard |
+| **Alexander y Nicolas** | Base de datos y tablas, conexión a la BD, carrito de compras |
+| **J.J.** | Login + sesión/cookies, apoya en el carrito desde el sábado |
+| **Lohnard** | Pantalla de administrador y dashboard |
+| **@.** | Logo e identidad visual, apoya en el dashboard desde el jueves |
+
+### Día por día
+
+- **Miércoles 24** — Alexis arranca el MVC y organiza el repo · Alexander/Nicolas crean BD y tablas · J.J. arranca el login · Lohnard arranca el dashboard · @. hace el logo
+- **Jueves 25** — Alexis termina el MVC y arranca roles · Alexander/Nicolas conectan la BD · J.J. sigue con login (lógica + sesión) · Lohnard y @. siguen con el dashboard
+- **Viernes 26** — Alexis en sistema de roles · Alexander/Nicolas arrancan el carrito · J.J. termina login y conecta sesión real · Lohnard y @. conectan dashboard con roles
+- **Sábado 27** — Alexis cierra roles · Alexander, Nicolas y J.J. en el carrito · Lohnard y @. en el dashboard
+- **Domingo 28** — Alexis arranca la API interna del dashboard · Alexander, Nicolas y J.J. cierran el carrito · Lohnard y @. dejan el dashboard listo para conectar la API
+- **Lunes 29** — Alexis termina la API · Todo el equipo: Pull Requests, revisión cruzada y merge a `main`
+- **Martes 30** — Todo el equipo: pruebas finales (login, roles, carrito, dashboard + API) y entrega
