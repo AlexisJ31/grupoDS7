@@ -1,4 +1,16 @@
-/* ===== CSS VARIABLES ===== */
+.team-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+}.team-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+}/* ===== CSS VARIABLES ===== */
 :root {
   --gold: #c9a87c;
   --gold-dark: #a8855a;
@@ -235,7 +247,18 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   text-align: center;
 }
 .cat-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
-.cat-img { height: 220px; transition: var(--transition); }
+.cat-img { 
+  height: 220px; 
+  transition: var(--transition); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+.cat-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
 .cat-card:hover .cat-img { transform: scale(1.03); }
 .cat-card span {
   display: block; padding: 1rem;
@@ -532,4 +555,63 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   }
   .footer-grid { grid-template-columns: 1fr; }
   .cart-sidebar { width: 100%; right: -100%; }
+}
+
+/* ===== STATIC PRODUCT IMAGES ===== */
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.product-card:hover .product-img img {
+  transform: scale(1.06);
+}
+.about-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.team-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+}
+
+/* ===== LOGO IMG ===== */
+.nav-logo img {
+  height: 38px;
+  width: auto;
+}
+.footer-brand .nav-logo img {
+  height: 32px;
+}
+
+/* ===== SOCIAL ICONS (SVG) ===== */
+.social-links a svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* ===== RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+  .cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .values-grid { grid-template-columns: 1fr 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .about-img { height: 280px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .shop-layout { grid-template-columns: 1fr; }
+  .filters-sidebar { position: static; }
+}
+@media (max-width: 480px) {
+  .hero-title { font-size: 2.8rem; }
+  .values-grid { grid-template-columns: 1fr; }
+  .cat-grid { grid-template-columns: 1fr 1fr; }
+  .promo-banner > .container > div[style] { grid-template-columns: 1fr 1fr; }
 }

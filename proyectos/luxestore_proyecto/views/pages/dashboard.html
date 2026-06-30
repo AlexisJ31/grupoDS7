@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LUXE STORE — Dashboard Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="stylesheet" href="../../css/dashboard.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="dash-body">
+
+  <aside class="dash-sidebar">
+    <div class="dash-brand">
+      <span class="dash-brand-mark">LUXE</span>
+      <span class="dash-brand-sub">Admin Panel</span>
+    </div>
+    <nav class="dash-nav">
+      <a href="#overview" class="dash-nav-item active" data-section="overview">Resumen</a>
+      <a href="#sales" class="dash-nav-item" data-section="sales">Ventas</a>
+      <a href="#products" class="dash-nav-item" data-section="products">Productos</a>
+      <a href="#orders" class="dash-nav-item" data-section="orders">Pedidos</a>
+      <a href="#users" class="dash-nav-item" data-section="users">Usuarios</a>
+    </nav>
+    <div class="dash-sidebar-foot">
+      <a href="../index.html" class="dash-back">← Volver al sitio</a>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <header class="dash-topbar">
+      <div>
+        <h1 class="dash-title">Dashboard</h1>
+        <p class="dash-subtitle">Panel administrativo · LUXE STORE</p>
+      </div>
+      <div class="dash-topbar-right">
+        <select id="dash-range" class="dash-select">
+          <option value="7">Últimos 7 días</option>
+          <option value="30" selected>Últimos 30 días</option>
+          <option value="90">Últimos 90 días</option>
+        </select>
+        <span class="dash-user">
+          <span class="dash-user-avatar">A</span>
+          <span>Admin</span>
+        </span>
+      </div>
+    </header>
+
+    <!-- ===== KPI CARDS ===== -->
+    <section class="dash-kpis">
+      <article class="kpi-card">
+        <span class="kpi-label">Ingresos totales</span>
+        <span class="kpi-value" id="kpi-revenue">—</span>
+        <span class="kpi-delta up" id="kpi-revenue-delta">—</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">Pedidos</span>
+        <span class="kpi-value" id="kpi-orders">—</span>
+        <span class="kpi-delta up" id="kpi-orders-delta">—</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">Ticket promedio</span>
+        <span class="kpi-value" id="kpi-aov">—</span>
+        <span class="kpi-delta" id="kpi-aov-delta">—</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">Usuarios registrados</span>
+        <span class="kpi-value" id="kpi-users">—</span>
+        <span class="kpi-delta up" id="kpi-users-delta">—</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">Productos activos</span>
+        <span class="kpi-value" id="kpi-products">—</span>
+        <span class="kpi-delta" id="kpi-products-delta">—</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">En oferta</span>
+        <span class="kpi-value" id="kpi-sale">—</span>
+        <span class="kpi-delta" id="kpi-sale-delta">—</span>
+      </article>
+    </section>
+
+    <!-- ===== CHARTS ROW 1 ===== -->
+    <section class="dash-grid">
+      <div class="dash-panel panel-wide">
+        <header class="panel-head">
+          <h2>Ventas por día</h2>
+          <span class="panel-sub" id="sales-period">—</span>
+        </header>
+        <div class="chart-wrap"><canvas id="chart-sales"></canvas></div>
+      </div>
+      <div class="dash-panel">
+        <header class="panel-head"><h2>Ventas por categoría</h2></header>
+        <div class="chart-wrap"><canvas id="chart-category"></canvas></div>
+      </div>
+    </section>
+
+    <!-- ===== CHARTS ROW 2 ===== -->
+    <section class="dash-grid">
+      <div class="dash-panel">
+        <header class="panel-head"><h2>Top productos vendidos</h2></header>
+        <div class="chart-wrap"><canvas id="chart-top"></canvas></div>
+      </div>
+      <div class="dash-panel">
+        <header class="panel-head"><h2>Stock bajo</h2></header>
+        <div class="chart-wrap"><canvas id="chart-stock"></canvas></div>
+      </div>
+      <div class="dash-panel">
+        <header class="panel-head"><h2>Nuevos usuarios / semana</h2></header>
+        <div class="chart-wrap"><canvas id="chart-users"></canvas></div>
+      </div>
+    </section>
+
+    <!-- ===== ORDERS TABLE ===== -->
+    <section class="dash-panel">
+      <header class="panel-head">
+        <h2>Últimos pedidos</h2>
+        <a href="#orders" class="panel-link">Ver todos →</a>
+      </header>
+      <div class="table-wrap">
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>Pedido</th>
+              <th>Cliente</th>
+              <th>Fecha</th>
+              <th>Total</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="orders-tbody">
+            <tr><td colspan="5" class="empty">Cargando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="dash-foot">
+      <span>LUXE STORE · Dashboard · grupoDS7</span>
+      <span id="dash-source-tag" class="dash-source">Fuente: <strong>MOCK</strong></span>
+    </footer>
+
+  </main>
+
+  <script src="../../controllers/api-client.js"></script>
+  <script src="../../controllers/dashboard.js"></script>
+</body>
+</html>
