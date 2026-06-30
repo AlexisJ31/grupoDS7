@@ -13,17 +13,17 @@
  * con el mismo shape, sin importar si la fuente es MOCK o real.
  * ============================================================ */
 
-const USE_MOCK = true;                 // ← Alexis: poner en false cuando la API esté lista
-const API_BASE = '/api';               // ← Alexis: ajustar a la URL base real
+const USE_MOCK = false;                // ← Alexis: CONECTADO A API PHP
+const API_BASE = '../api/dashboard.php?endpoint='; // ← Ruta a la API interna
 
 const ENDPOINTS = {
-  kpis:        '/dashboard/kpis',          // GET ?range=30
-  salesSeries: '/dashboard/sales-series',  // GET ?range=30
-  byCategory:  '/dashboard/sales-by-category',
-  topProducts: '/dashboard/top-products',  // GET ?limit=5
-  lowStock:    '/dashboard/low-stock',
-  newUsers:    '/dashboard/new-users',     // GET ?range=30 (agrupado semanal)
-  orders:      '/dashboard/orders',        // GET ?limit=10
+  kpis:        'kpis',          // GET ?range=30
+  salesSeries: 'sales-series',  // GET ?range=30
+  byCategory:  'sales-by-category',
+  topProducts: 'top-products',  // GET ?limit=5
+  lowStock:    'low-stock',
+  newUsers:    'new-users',     // GET ?range=30 (agrupado semanal)
+  orders:      'orders',        // GET ?limit=10
 };
 
 /* ============================================================
@@ -60,7 +60,7 @@ const DashboardAPI = {
 
   async _get(path, params = {}) {
     const qs = new URLSearchParams(params).toString();
-    const url = `${API_BASE}${path}${qs ? '?' + qs : ''}`;
+    const url = `${API_BASE}${path}${qs ? '&' + qs : ''}`;
     const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
     if (!res.ok) throw new Error(`API ${path} → ${res.status}`);
     return res.json();
