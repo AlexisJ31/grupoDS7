@@ -1,5 +1,7 @@
-// ===== PRODUCTS DATABASE =====
-const PRODUCTS = [
+// ===== PRODUCTS DATABASE (fallback local) =====
+const API_BASE = window.location.pathname.includes('/pages/') ? '../api' : 'api';
+
+const LOCAL_PRODUCTS = [
   { id: 1, name: "Blazer Clásico Beige", category: "mujer", price: 189.99, oldPrice: 239.99, emoji: "🧥", badge: "Sale", desc: "Blazer atemporal de corte estructurado" },
   { id: 2, name: "Vestido Midi Floral", category: "mujer", price: 145.00, oldPrice: null, emoji: "👗", badge: "Nuevo", desc: "Estampado floral en seda natural" },
   { id: 3, name: "Camisa Lino Premium", category: "hombre", price: 98.00, oldPrice: null, emoji: "👔", badge: null, desc: "Lino 100% lavado a la piedra" },
@@ -13,6 +15,22 @@ const PRODUCTS = [
   { id: 11, name: "Loafers Cuero Negro", category: "hombre", price: 210.00, oldPrice: null, emoji: "👞", badge: null, desc: "Mocasines artesanales con borla" },
   { id: 12, name: "Pañuelo Seda Estampado", category: "accesorios", price: 55.00, oldPrice: null, emoji: "🎀", badge: "Nuevo", desc: "Seda natural 90x90cm estampado exclusivo" },
 ];
+
+let PRODUCTS = [...LOCAL_PRODUCTS];
+
+async function loadProducts() {
+  try {
+    const res = await fetch(`${API_BASE}/products.php`);
+    const json = await res.json();
+    if (json.success && json.data.length > 0) {
+      PRODUCTS = json.data;
+    }
+  } catch {
+    console.warn('API no disponible, usando datos locales');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadProducts);
 
 // ===== RENDER PRODUCT CARD =====
 function renderProductCard(product) {

@@ -23,6 +23,13 @@
     <div class="nav-icons">
       <button class="icon-btn" title="Buscar">🔍</button>
       <button class="icon-btn cart-btn" title="Carrito" onclick="toggleCart()">🛒 <span class="cart-count" id="cartCount">0</span></button>
+      <div class="user-menu">
+        <button class="icon-btn" id="authBtn" title="Iniciar sesión" onclick="openAuthModal()">👤</button>
+        <span class="user-name" id="userName" onclick="toggleAuthDropdown()"></span>
+        <div class="auth-dropdown" id="authDropdown">
+          <a href="#" onclick="handleLogout()">Cerrar sesión</a>
+        </div>
+      </div>
       <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
     </div>
   </nav>
@@ -163,6 +170,49 @@
     </div>
   </section>
 
+  <!-- AUTH MODAL -->
+  <div class="auth-overlay" id="authOverlay" onclick="closeAuthModal()"></div>
+  <div class="auth-modal" id="authModal">
+    <div class="auth-modal-header">
+      <h3>Mi Cuenta</h3>
+      <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-tab="login" onclick="switchAuthTab('login')">Iniciar Sesión</button>
+      <button class="auth-tab" data-tab="register" onclick="switchAuthTab('register')">Crear Cuenta</button>
+    </div>
+
+    <form class="auth-form active" id="authFormLogin" onsubmit="handleLogin(event)">
+      <p class="auth-msg"></p>
+      <div class="auth-field">
+        <label>Correo electrónico</label>
+        <input type="email" name="loginEmail" placeholder="tu@correo.com" required/>
+      </div>
+      <div class="auth-field">
+        <label>Contraseña</label>
+        <input type="password" name="loginPassword" placeholder="••••••" required/>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;">Iniciar Sesión</button>
+    </form>
+
+    <form class="auth-form" id="authFormRegister" onsubmit="handleRegister(event)">
+      <p class="auth-msg"></p>
+      <div class="auth-field">
+        <label>Nombre completo</label>
+        <input type="text" name="regNombre" placeholder="Tu nombre" required/>
+      </div>
+      <div class="auth-field">
+        <label>Correo electrónico</label>
+        <input type="email" name="regEmail" placeholder="tu@correo.com" required/>
+      </div>
+      <div class="auth-field">
+        <label>Contraseña</label>
+        <input type="password" name="regPassword" placeholder="Mínimo 6 caracteres" minlength="6" required/>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;">Crear Cuenta</button>
+    </form>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-grid">
@@ -211,6 +261,7 @@
 
   <script src="js/products.js"></script>
   <script src="js/cart.js"></script>
+  <script src="js/auth.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

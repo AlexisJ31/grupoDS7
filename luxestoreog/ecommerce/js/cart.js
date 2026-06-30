@@ -12,7 +12,7 @@ function addToCart(productId) {
   if (existing) {
     existing.qty++;
   } else {
-    cart.push({ ...product, qty: 1 });
+    cart.push({ id: product.id, name: product.name, price: product.price, emoji: product.emoji, qty: 1 });
   }
   saveCart();
   updateCartUI();
@@ -59,6 +59,56 @@ function toggleCart() {
   if (!sidebar) return;
   sidebar.classList.toggle('open');
   overlay.classList.toggle('open');
+}
+
+async function checkout() {
+  if (cart.length === 0) {
+    showToast('Tu carrito está vacío');
+    return;
+  }
+
+  const token = getAuthToken();
+  if (!token) {
+    toggleCart();
+    openAuthModal();
+    showToast('Debes iniciar sesión para comprar');
+    return;
+  }
+
+  const btn = document.querySelector('.cart-footer .btn-primary');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Procesando...';
+  }
+
+  try {
+    const res = await fetch(`${API_BASE}/checkout.php`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        token,
+        items: cart.map(i => ({ id: i.id, qty: i.qty })),
+      }),
+    });
+    const json = await res.json();
+
+    if (json.success) {
+      showToast(`✓ ¡Compra realizada con éxito! Total: $${json.data.total.toFixed(2)}`);
+      cart = [];
+      saveCart();
+      updateCartUI();
+      toggleCart();
+    } else {
+      showToast(`✗ ${json.error}`);
+    }
+  } catch {
+    showToast('✗ Error de conexión con el servidor');
+  }
+
+  if (btn) {
+    btn.disabled = false;
+    btn.textContent = 'Finalizar Compra';
+  }
 }
 
 // Init cart on load
