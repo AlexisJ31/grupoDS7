@@ -74,3 +74,5 @@ El sitio usa etiquetas `<img>` reales. Debes agregar tus propias fotos en la car
 | Responsive sin frameworks externos (CSS3 puro) | ✅ |
 | Cero PHP / lógica dinámica | ✅ |
 | Todo el contenido escrito directamente en HTML | ✅ |
+
+> **Mejora pendiente:** la parte móvil requiere optimización adicional en el menú y el diseño responsive; se trabajará en esa fase siguiente.
