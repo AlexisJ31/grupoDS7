@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+
+    <link rel="stylesheet" href="../../css/registro.css" />
+</head>
+<body>
+
+    <div class="container">
+
+        <h2>Crear Cuenta</h2>
+
+        <p class="subtitle">Regístrate para acceder al sistema</p>
+
+        <input type="text" id="newUser" placeholder="Usuario">
+        <input type="email" id="email" placeholder="Correo electrónico">
+        <input type="password" id="newPass" placeholder="Contraseña">
+        <input type="password" id="confirmPass" placeholder="Confirmar contraseña">
+
+        <button onclick="register()">Registrarse</button>
+
+        <span id="errorMsg"></span>
+
+        <p>
+            ¿Ya tienes cuenta?
+            <a href="login.html">Iniciar sesión</a>
+        </p>
+
+    </div>
+
+    <script src="../../controllers/registro.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+/* ===== BASE ===== */
+:root {
+  --black: #0f0f0f;
+  --white: #ffffff;
+  --gold: #c9a24e;
+  --gold-dark: #a8863a;
+  --gray: #8a8a8a;
+  --light: #f6f3ee;
+
+  --radius: 10px;
+  --shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+  --font-body: Arial, sans-serif;
+  --font-display: "Georgia", serif;
+
+  --transition: 0.3s ease;
+}
+
+/* ===== PAGE CENTER ===== */
+body {
+  margin: 0;
+  background: var(--light);
+  font-family: var(--font-body);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: var(--black);
+}
+
+/* ===== LOGIN BOX ===== */
+.container {
+  width: 360px;
+  background: var(--white);
+  border: 1px solid #ece6db;
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ===== TITLE ===== */
+.container h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+/* ===== INPUTS ===== */
+input {
+  width: 100%;
+  padding: 0.75rem 0.8rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #d8d2c8;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--transition);
+  background: #fff;
+}
+
+input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(201, 162, 78, 0.2);
+}
+
+/* ===== BUTTON ===== */
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 0.5rem;
+}
+
+button:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* ===== ERROR MESSAGE ===== */
+#errorMsg {
+  display: block;
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  color: #b94545;
+  min-height: 18px;
+}
+
+/* ===== LINKS ===== */
+.container p {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+.container a {
+  color: var(--gold-dark);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}
