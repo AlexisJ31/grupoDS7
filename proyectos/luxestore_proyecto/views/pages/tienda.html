@@ -9,11 +9,10 @@
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
   <nav class="navbar" id="navbar">
     <div class="nav-logo">
       <a href="../index.html">
-        <img src="../../luxestore_logo.svg" alt="LUXE STORE"/>
+        <img src="../../logoStore.png" alt="LUXE STORE"/>
       </a>
     </div>
     <ul class="nav-links">
@@ -23,12 +22,26 @@
       <li><a href="contacto.html">Contacto</a></li>
     </ul>
     <div class="nav-icons">
-      <a href="tienda.html" class="icon-btn" aria-label="Tienda">
+      <a href="tienda.html" class="icon-btn" aria-label="Buscar">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </a>
-      <a href="tienda.html" class="icon-btn cart-btn" aria-label="Tienda">
+      <button class="icon-btn cart-btn" aria-label="Carrito" onclick="toggleCart()">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="cart-count" id="cart-count-header">0</span>
+      </button>
+      <a href="login.html" class="icon-btn auth-logged-out" aria-label="Iniciar sesión">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"></path><circle cx="12" cy="7" r="4"></circle></svg>
       </a>
+      <div class="user-menu auth-logged-in" style="display:none;position:relative;">
+        <button class="icon-btn" onclick="toggleUserMenu()" aria-label="Usuario">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </button>
+        <div class="user-dropdown" id="userDropdown" style="display:none;position:absolute;right:0;top:100%;background:#fff;border:1px solid #e0d6c8;border-radius:8px;padding:0.5rem;min-width:160px;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+          <p style="padding:0.25rem 0.5rem;margin:0;font-weight:500;font-size:0.85rem;" id="userName"></p>
+          <hr style="border:none;border-top:1px solid #eee;margin:0.25rem 0;">
+          <button onclick="cerrarSesion()" style="background:none;border:none;padding:0.25rem 0.5rem;cursor:pointer;font-size:0.85rem;color:#b94545;width:100%;text-align:left;">Cerrar sesión</button>
+        </div>
+      </div>
       <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
@@ -42,111 +55,124 @@
     <a href="contacto.html">Contacto</a>
   </div>
 
-  <!-- PAGE HEADER -->
   <div class="page-header">
     <p class="breadcrumb"><a href="../index.html">Inicio</a> / Tienda</p>
     <h1>Nuestra Tienda</h1>
     <p>Descubre nuestra colección completa de moda premium</p>
   </div>
 
-  <!-- SHOP LAYOUT -->
   <div class="container shop-layout">
-
-    <!-- SIDEBAR FILTROS -->
-    <aside class="filters-sidebar">
+    <aside class="filters-sidebar" id="filters-sidebar">
       <h3>Filtros</h3>
       <div class="filter-group">
         <h4>Categoría</h4>
-        <label><input type="checkbox" name="cat" value="mujer" checked/> Mujer</label>
-        <label><input type="checkbox" name="cat" value="hombre" checked/> Hombre</label>
-        <label><input type="checkbox" name="cat" value="accesorios" checked/> Accesorios</label>
+        <label><input type="checkbox" name="cat" value="mujer" checked onchange="filtrarProductos()"/> Mujer</label>
+        <label><input type="checkbox" name="cat" value="hombre" checked onchange="filtrarProductos()"/> Hombre</label>
+        <label><input type="checkbox" name="cat" value="accesorios" checked onchange="filtrarProductos()"/> Accesorios</label>
       </div>
-      <div class="filter-group">
-        <h4>Precio</h4>
-        <label><input type="radio" name="price" value="all" checked/> Todos</label>
-        <label><input type="radio" name="price" value="low"/> Hasta $100</label>
-        <label><input type="radio" name="price" value="mid"/> $100 – $200</label>
-        <label><input type="radio" name="price" value="high"/> Más de $200</label>
-      </div>
-      <div class="filter-group">
-        <h4>Estado</h4>
-        <label><input type="checkbox" name="estado" value="nuevo" checked/> Nuevo</label>
-        <label><input type="checkbox" name="estado" value="sale" checked/> Sale</label>
-      </div>
-      <p style="font-size:0.78rem;color:var(--gray);margin-top:1rem;">Esta es una página estática. Los filtros son orientativos.</p>
     </aside>
 
-    <!-- PRODUCTOS -->
     <div class="shop-content">
       <div class="sort-bar">
-        <p>Mostrando <strong>12</strong> productos</p>
+        <p>Mostrando <strong id="product-count">0</strong> productos</p>
       </div>
-      <div class="products-grid">
-
-        <!-- MUJER -->
-        <article class="product-card animate">
-          <div class="product-img" style="background:#f0e8df">
-            <span class="product-badge">Sale</span>
-            <img src="../../img/Blazer Clásico Beige.jpg" alt="Blazer Clásico Beige"/>
-          </div>
-          <div class="product-info">
-            <h3>Blazer Clásico Beige</h3>
-            <p>Blazer atemporal de corte estructurado</p>
-            <div class="product-footer">
-              <div class="product-price"><span class="old-price">$239.99</span> $189.99</div>
-              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card animate">
-          <div class="product-img" style="background:#f0e8df">
-            <span class="product-badge">Nuevo</span>
-            <img src="../../img/Vestido Midi Floral.jpg" alt="Vestido Midi Floral"/>
-          </div>
-          <div class="product-info">
-            <h3>Vestido Midi Floral</h3>
-            <p>Estampado floral en seda natural</p>
-            <div class="product-footer">
-              <div class="product-price">$145.00</div>
-              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card animate">
-          <div class="product-img" style="background:#e8ede5">
-            <img src="../../img/Camisa Lino Premium.jpg" alt="Camisa Lino Premium"/>
-          </div>
-          <div class="product-info">
-            <h3>Camisa Lino Premium</h3>
-            <p>Lino 100% lavado a la piedra</p>
-            <div class="product-footer">
-              <div class="product-price">$98.00</div>
-              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card animate">
-          <div class="product-img" style="background:#ece7f0">
-            <span class="product-badge">Nuevo</span>
-            <img src="../../img/Bolso Piel Topo.jpg" alt="Bolso Piel Topo"/>
-          </div>
-          <div class="product-info">
-            <h3>Bolso Piel Topo</h3>
-            <p>Piel italiana cosida a mano</p>
-            <div class="product-footer">
-              <div class="product-price">$265.00</div>
-              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
-            </div>
-          </div>
-        </article>
-
+      <div class="products-grid" id="products-grid">
+        <p style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--gray);">Cargando productos...</p>
       </div>
     </div>
   </div>
 
+  <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2>Carrito</h2>
+      <button class="cart-close" onclick="toggleCart()">✕</button>
+    </div>
+    <div class="cart-body">
+      <p id="cart-empty" style="text-align:center;color:var(--gray);padding:2rem 0;">Tu carrito está vacío</p>
+      <div id="cart-items"></div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cart-total">$0.00</strong>
+      </div>
+      <button class="btn-primary" onclick="finalizarCompra()" style="width:100%;">Finalizar compra</button>
+      <button class="btn-outline" onclick="vaciarCarrito()" style="width:100%;margin-top:0.5rem;">Vaciar carrito</button>
+    </div>
+  </div>
+
+  <script src="../../controllers/auth.js"></script>
+  <script src="../../controllers/cart.js"></script>
+  <script>
+    let allProducts = [];
+
+    async function cargarProductos() {
+      const grid = document.getElementById('products-grid');
+      try {
+        const res = await fetch(`../../api/products.php`);
+        const json = await res.json();
+        if (!json.success) throw new Error(json.error);
+        allProducts = json.data;
+        filtrarProductos();
+      } catch (err) {
+        grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;padding:3rem 0;color:#b94545;">Error al cargar productos: ${err.message}</p>`;
+      }
+    }
+
+    function filtrarProductos() {
+      const checked = [...document.querySelectorAll('input[name="cat"]:checked')].map(cb => cb.value);
+      const filtered = allProducts.filter(p => checked.includes(p.category));
+      renderizarProductos(filtered);
+    }
+
+    function renderizarProductos(productos) {
+      const grid = document.getElementById('products-grid');
+      document.getElementById('product-count').textContent = productos.length;
+      if (productos.length === 0) {
+        grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:3rem 0;color:var(--gray);">No hay productos en esta categoría.</p>';
+        return;
+      }
+      grid.innerHTML = productos.map(p => {
+        const badgeHtml = p.badge ? `<span class="product-badge">${p.badge}</span>` : '';
+        const oldPriceHtml = p.oldPrice ? `<span class="old-price">$${parseFloat(p.oldPrice).toFixed(2)}</span>` : '';
+        return `
+          <article class="product-card">
+            <div class="product-img" style="background:#f0e8df">
+              ${badgeHtml}
+              <img src="../../img/${p.imagen || p.name + '.jpg'}" alt="${p.name}" onerror="this.style.display='none'"/>
+            </div>
+            <div class="product-info">
+              <h3>${p.name}</h3>
+              <p>${p.desc || ''}</p>
+              <div class="product-footer">
+                <div class="product-price">${oldPriceHtml} $${parseFloat(p.price).toFixed(2)}</div>
+                <button class="add-to-cart-btn" onclick="agregarAlCarrito({id:${p.id},name:'${p.name.replace(/'/g, "\\'")}',price:${p.price},imagen:'${p.imagen || ''}'})">Añadir al carrito</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function toggleCart() {
+      document.getElementById('cart-sidebar').classList.toggle('open');
+      document.getElementById('cart-overlay').classList.toggle('open');
+      renderizarCarrito();
+    }
+
+    function toggleUserMenu() {
+      const dd = document.getElementById('userDropdown');
+      dd.style.display = dd.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      cargarProductos();
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.user-menu')) document.getElementById('userDropdown').style.display = 'none';
+      });
+    });
+  </script>
   <script src="../../controllers/main.js"></script>
 </body>
 </html>
