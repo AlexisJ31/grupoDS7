@@ -8,7 +8,7 @@ INSERT INTO categorias (id, nombre, slug, descripcion) VALUES
 ON DUPLICATE KEY UPDATE nombre = VALUES(nombre);
 
 -- ===== PRODUCTOS =====
-INSERT INTO productos (id, categoria_id, nombre, descripcion, precio, precio_anterior, imagen, badge) VALUES
+INSERT INTO productos (id, categoria_id, nombre, descripcion, precio, precio_anterior, emoji, badge) VALUES
 (1, 1, 'Blazer Clásico Beige', 'Blazer atemporal de corte estructurado', 189.99, 239.99, 'blazer_beige.png', 'Sale'),
 (2, 1, 'Vestido Midi Floral', 'Estampado floral en seda natural', 145.00, NULL, 'vestido_floral.png', 'Nuevo'),
 (3, 2, 'Camisa Lino Premium', 'Lino 100% lavado a la piedra', 98.00, NULL, 'camisa_lino.png', NULL),

@@ -82,71 +82,39 @@
         <p>Mostrando <strong>12</strong> productos</p>
       </div>
       <div class="products-grid">
-
-        <!-- MUJER -->
-        <article class="product-card animate">
-          <div class="product-img" style="background:#f0e8df">
-            <span class="product-badge">Sale</span>
-            <img src="../../img/Blazer Clásico Beige.jpg" alt="Blazer Clásico Beige"/>
-          </div>
-          <div class="product-info">
-            <h3>Blazer Clásico Beige</h3>
-            <p>Blazer atemporal de corte estructurado</p>
-            <div class="product-footer">
-              <div class="product-price"><span class="old-price">$239.99</span> $189.99</div>
-              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card animate">
-          <div class="product-img" style="background:#f0e8df">
-            <span class="product-badge">Nuevo</span>
-            <img src="../../img/Vestido Midi Floral.jpg" alt="Vestido Midi Floral"/>
-          </div>
-          <div class="product-info">
-            <h3>Vestido Midi Floral</h3>
-            <p>Estampado floral en seda natural</p>
-            <div class="product-footer">
-              <div class="product-price">$145.00</div>
-              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card animate">
-          <div class="product-img" style="background:#e8ede5">
-            <img src="../../img/Camisa Lino Premium.jpg" alt="Camisa Lino Premium"/>
-          </div>
-          <div class="product-info">
-            <h3>Camisa Lino Premium</h3>
-            <p>Lino 100% lavado a la piedra</p>
-            <div class="product-footer">
-              <div class="product-price">$98.00</div>
-              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card animate">
-          <div class="product-img" style="background:#ece7f0">
-            <span class="product-badge">Nuevo</span>
-            <img src="../../img/Bolso Piel Topo.jpg" alt="Bolso Piel Topo"/>
-          </div>
-          <div class="product-info">
-            <h3>Bolso Piel Topo</h3>
-            <p>Piel italiana cosida a mano</p>
-            <div class="product-footer">
-              <div class="product-price">$265.00</div>
-              <a href="contacto.html" class="add-to-cart-btn">Consultar</a>
-            </div>
-          </div>
-        </article>
-
+        <!-- Los productos se cargarán dinámicamente desde la BD vía JS -->
       </div>
     </div>
   </div>
 
+  <!-- ===== CART SIDEBAR ===== -->
+  <div class="cart-overlay" id="cartOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:9998;" onclick="document.getElementById('cartSidebar').style.right='-400px'; this.style.display='none';"></div>
+  <aside class="cart-sidebar" id="cartSidebar" style="position:fixed; top:0; right:-400px; width:350px; max-width:100%; height:100vh; background:#fff; z-index:9999; box-shadow:-2px 0 10px rgba(0,0,0,0.1); padding:2rem; transition:right 0.3s ease; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
+      <h2>Tu Carrito (<span id="cartCount">0</span>)</h2>
+      <button onclick="document.getElementById('cartSidebar').style.right='-400px'; document.getElementById('cartOverlay').style.display='none';" style="border:none; background:none; font-size:1.5rem; cursor:pointer;">&times;</button>
+    </div>
+    <div id="cartItems" style="display:flex; flex-direction:column; gap:1rem;">
+      <!-- Items se inyectan acá por JS -->
+    </div>
+    <div style="margin-top:2rem; border-top:1px solid #eee; padding-top:1rem;">
+      <h3>Total: <span id="cartTotal">$0.00</span></h3>
+      <button class="btn-primary" style="width:100%; margin-top:1rem; padding:1rem; border:none; cursor:pointer;" onclick="alert('Funcionalidad de Checkout en construcción')">Finalizar Compra</button>
+    </div>
+  </aside>
+
+  <script>
+    // Mostrar el sidebar cuando hagan click en el icono del carrito en el nav
+    document.querySelectorAll('.cart-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('cartSidebar').style.right = '0';
+        document.getElementById('cartOverlay').style.display = 'block';
+      });
+    });
+  </script>
   <script src="../../controllers/main.js"></script>
+  <script src="../../js/cart.js?v=2"></script>
+  <script src="../../js/products.js?v=2"></script>
 </body>
 </html>
