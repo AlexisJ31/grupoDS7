@@ -1,3 +1,10 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 /* ===== BASE ===== */
 :root {
   --black: #0f0f0f;
@@ -132,3 +139,4 @@ button:hover {
     padding: 1.5rem;
   }
 }
+
