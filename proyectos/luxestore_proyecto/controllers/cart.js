@@ -104,7 +104,8 @@ async function finalizarCompra() {
     const json = await res.json();
     if (json.success) {
       vaciarCarrito();
-      mostrarToast('✓ Compra realizada con éxito');
+      alert('🎉 ¡Pago exitoso! Tu compra ha sido registrada en el sistema.\n\nGracias por confiar en LUXE STORE.');
+      window.location.href = '../index.html';
     } else {
       mostrarToast('✗ ' + (json.error || 'Error al procesar la compra'));
     }
