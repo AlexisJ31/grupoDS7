@@ -1,3 +1,8 @@
+<?php
+// Requerir el validador de roles para restringir el acceso del lado del servidor
+require_once __DIR__ . '/../../models/Rol.php';
+Rol::verificarRolAdmin();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -150,4 +155,3 @@
   <script src="../../controllers/dashboard.js"></script>
 </body>
 </html>
- 

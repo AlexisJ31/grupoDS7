@@ -28,6 +28,13 @@ if (empty($input['email']) || empty($input['password'])) {
 
 try {
     $user = User::login($input['email'], $input['password']);
+    
+    // Iniciar la sesión de PHP en el servidor y registrar el rol del usuario
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+    $_SESSION['user_role'] = $user['rol'] ?? 'cliente';
+    
     echo json_encode(['success' => true, 'data' => $user]);
 } catch (RuntimeException $e) {
     http_response_code(401);

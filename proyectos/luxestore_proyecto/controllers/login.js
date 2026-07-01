@@ -22,9 +22,21 @@ async function login() {
     errorMsg.style.color = "#2e7d4f";
     errorMsg.innerText = "Iniciando sesión...";
     setTimeout(() => {
-      window.location.href = result.rol === 'admin' ? 'dashboard.html' : '../index.html';
+      window.location.href = result.rol === 'admin' ? 'dashboard.php' : '../index.html';
     }, 800);
   } else {
     errorMsg.innerText = result.error;
   }
 }
+
+// Mostrar error de acceso denegado si se recibe por parámetro en la URL al cargar
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('error') === 'acceso_denegado') {
+    const errorMsg = document.getElementById("errorMsg");
+    if (errorMsg) {
+      errorMsg.innerText = "Acceso Denegado: Se requiere rol de Administrador.";
+      errorMsg.style.color = "#b94545";
+    }
+  }
+});

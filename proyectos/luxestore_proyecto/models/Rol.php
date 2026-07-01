@@ -21,13 +21,14 @@ class Rol {
             session_start();
         }
 
-        // TODO: confirmar con J.J. el nombre exacto de la variable de sesión donde guarda el rol al loguear
-        // TODO: confirmar con Alexander/Nicolas el nombre real de la columna de rol en la tabla usuarios
-        
         // Validamos si la variable de rol está definida en la sesión y si corresponde a ADMIN
         if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== self::ADMIN) {
+            // Destruimos la sesión en el servidor por seguridad
+            unset($_SESSION['user_role']);
+            session_destroy();
+            
             // Si el rol no es válido o no es administrador, redirige al login con parámetro de acceso denegado
-            header('Location: login.php?error=acceso_denegado');
+            header('Location: login.html?error=acceso_denegado');
             exit();
         }
     }
