@@ -1,3 +1,8 @@
+<?php
+// Requerir el validador de roles para restringir el acceso del lado del servidor
+require_once __DIR__ . '/../../models/Rol.php';
+Rol::verificarRolAdmin();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -24,6 +29,7 @@
       <a href="#products" class="dash-nav-item" data-section="products">Productos</a>
       <a href="#orders" class="dash-nav-item" data-section="orders">Pedidos</a>
       <a href="#users" class="dash-nav-item" data-section="users">Usuarios</a>
+      <a href="#messages" class="dash-nav-item" data-section="messages">Mensajes</a>
     </nav>
     <div class="dash-sidebar-foot">
       <a href="../index.html" class="dash-back">← Volver al sitio</a>
@@ -51,7 +57,7 @@
     </header>
 
     <!-- ===== KPI CARDS ===== -->
-    <section class="dash-kpis">
+    <section class="dash-kpis" id="overview">
       <article class="kpi-card">
         <span class="kpi-label">Ingresos totales</span>
         <span class="kpi-value" id="kpi-revenue">—</span>
@@ -85,7 +91,7 @@
     </section>
 
     <!-- ===== CHARTS ROW 1 ===== -->
-    <section class="dash-grid">
+    <section class="dash-grid" id="sales">
       <div class="dash-panel panel-wide">
         <header class="panel-head">
           <h2>Ventas por día</h2>
@@ -100,7 +106,7 @@
     </section>
 
     <!-- ===== CHARTS ROW 2 ===== -->
-    <section class="dash-grid">
+    <section class="dash-grid" id="products">
       <div class="dash-panel">
         <header class="panel-head"><h2>Top productos vendidos</h2></header>
         <div class="chart-wrap"><canvas id="chart-top"></canvas></div>
@@ -109,14 +115,14 @@
         <header class="panel-head"><h2>Stock bajo</h2></header>
         <div class="chart-wrap"><canvas id="chart-stock"></canvas></div>
       </div>
-      <div class="dash-panel">
+      <div class="dash-panel" id="users">
         <header class="panel-head"><h2>Nuevos usuarios / semana</h2></header>
         <div class="chart-wrap"><canvas id="chart-users"></canvas></div>
       </div>
     </section>
 
     <!-- ===== ORDERS TABLE ===== -->
-    <section class="dash-panel">
+    <section class="dash-panel" id="orders">
       <header class="panel-head">
         <h2>Últimos pedidos</h2>
         <a href="#orders" class="panel-link">Ver todos →</a>
@@ -139,6 +145,28 @@
       </div>
     </section>
 
+    <!-- ===== MESSAGES TABLE ===== -->
+    <section class="dash-panel" id="messages">
+      <header class="panel-head">
+        <h2>Mensajes de Contacto</h2>
+      </header>
+      <div class="table-wrap">
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Nombre</th>
+              <th>Asunto</th>
+              <th>Mensaje</th>
+            </tr>
+          </thead>
+          <tbody id="messages-tbody">
+            <tr><td colspan="4" class="empty">Cargando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <footer class="dash-foot">
       <span>LUXE STORE · Dashboard · grupoDS7</span>
       <span id="dash-source-tag" class="dash-source">Fuente: <strong>MOCK</strong></span>
@@ -146,8 +174,7 @@
 
   </main>
 
-  <script src="../../controllers/api-client.js"></script>
-  <script src="../../controllers/dashboard.js"></script>
+  <script src="../../controllers/api-client.js?v=3"></script>
+  <script src="../../controllers/dashboard.js?v=3"></script>
 </body>
 </html>
- 

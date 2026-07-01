@@ -194,6 +194,29 @@ function statusLabel(s) {
             delivered: 'Entregado', canceled: 'Cancelado' })[s] || s;
 }
 
+/* ---------- MESSAGES TABLE ---------- */
+async function loadMessages() {
+  const tbody = document.getElementById('messages-tbody');
+  if (!tbody) return;
+  try {
+    const msgs = await DashboardAPI.messages(10);
+    if (!msgs || !msgs.length) {
+      tbody.innerHTML = '<tr><td colspan="4" class="empty">Sin mensajes.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = msgs.map(m => `
+      <tr>
+        <td style="white-space:nowrap;">${m.fecha}</td>
+        <td><strong>${m.nombre}</strong><br><small style="color:var(--gray)">${m.email}</small></td>
+        <td>${m.asunto}</td>
+        <td style="max-width:200px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${m.mensaje}">${m.mensaje}</td>
+      </tr>
+    `).join('');
+  } catch (err) {
+    tbody.innerHTML = `<tr><td colspan="4" class="empty">Error al cargar: ${err.message}</td></tr>`;
+  }
+}
+
 /* ---------- INIT ---------- */
 async function refreshAll(range) {
   await Promise.all([
@@ -203,7 +226,8 @@ async function refreshAll(range) {
     loadTopChart(),
     loadStockChart(),
     loadUsersChart(range),
-    loadOrders()
+    loadOrders(),
+    loadMessages()
   ]);
 }
 

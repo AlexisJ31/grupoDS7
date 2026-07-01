@@ -9,7 +9,7 @@ class Product
         $db  = Database::getConnection();
         $stmt = $db->query('
             SELECT p.id, p.nombre AS name, c.slug AS category, p.precio AS price,
-                   p.precio_anterior AS oldPrice, p.imagen, p.badge, p.descripcion AS `desc`
+                   p.precio_anterior AS oldPrice, p.emoji AS imagen, p.badge, p.descripcion AS `desc`
             FROM productos p
             JOIN categorias c ON p.categoria_id = c.id
             WHERE p.activo = 1
@@ -23,7 +23,7 @@ class Product
         $db  = Database::getConnection();
         $stmt = $db->prepare('
             SELECT p.id, p.nombre AS name, c.slug AS category, p.precio AS price,
-                   p.precio_anterior AS oldPrice, p.imagen, p.badge, p.descripcion AS `desc`
+                   p.precio_anterior AS oldPrice, p.emoji AS imagen, p.badge, p.descripcion AS `desc`
             FROM productos p
             JOIN categorias c ON p.categoria_id = c.id
             WHERE p.id = :id AND p.activo = 1

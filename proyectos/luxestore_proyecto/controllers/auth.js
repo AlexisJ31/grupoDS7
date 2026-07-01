@@ -34,6 +34,32 @@ function updateAuthUI() {
   if (userName) {
     userName.textContent = user ? user.nombre : '';
   }
+  
+  // Agregar enlace al Dashboard si es admin
+  const userDropdown = document.getElementById('userDropdown');
+  if (userDropdown) {
+    let adminLink = document.getElementById('adminDashboardLink');
+    if (user && user.rol === 'admin') {
+      if (!adminLink) {
+        adminLink = document.createElement('a');
+        adminLink.id = 'adminDashboardLink';
+        const isPagesDir = window.location.pathname.includes('/pages/');
+        adminLink.href = isPagesDir ? 'dashboard.php' : 'pages/dashboard.php';
+        adminLink.style.cssText = 'display:block; padding:0.25rem 0.5rem; cursor:pointer; font-size:0.85rem; color:#000; text-decoration:none; margin-top:0.25rem; margin-bottom:0.25rem; width:100%; text-align:left; font-weight:600;';
+        adminLink.textContent = '🛡️ Panel de Admin';
+        
+        // Insertar justo antes del separador <hr> para que quede arriba del botón "Cerrar sesión"
+        const hr = userDropdown.querySelector('hr');
+        if (hr) {
+          userDropdown.insertBefore(adminLink, hr);
+        } else {
+          userDropdown.appendChild(adminLink);
+        }
+      }
+    } else if (adminLink) {
+      adminLink.remove();
+    }
+  }
 }
 
 async function handleLogin(email, password) {
@@ -88,7 +114,8 @@ async function handleRegister(nombre, email, password) {
 
 function cerrarSesion() {
   clearAuth();
-  window.location.href = 'login.html';
+  const isPagesDir = window.location.pathname.includes('/pages/');
+  window.location.href = isPagesDir ? 'login.html' : 'pages/login.html';
 }
 
 document.addEventListener('DOMContentLoaded', updateAuthUI);
