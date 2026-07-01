@@ -85,3 +85,14 @@ CREATE TABLE IF NOT EXISTS compra_items (
     FOREIGN KEY (compra_id) REFERENCES compras(id) ON DELETE CASCADE,
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 ) ENGINE=InnoDB;
+
+-- ===== MENSAJES DE CONTACTO =====
+CREATE TABLE IF NOT EXISTS mensajes_contacto (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    asunto VARCHAR(150),
+    mensaje TEXT NOT NULL,
+    leido TINYINT(1) DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;

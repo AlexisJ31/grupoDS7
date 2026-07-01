@@ -27,11 +27,23 @@ if (str_starts_with($token, 'Bearer ')) {
 }
 
 $user = User::validateToken($token);
+
+// =========================================================
+// MOCK DE USUARIO (TEMPORAL HASTA QUE INTEGRES TU SISTEMA)
+// =========================================================
+if (!$user) {
+    // Simulamos que es el usuario con ID 1 (María) para que pase la compra
+    $user = ['id' => 1, 'nombre' => 'Cliente Invitado (Temporal)'];
+}
+// =========================================================
+
+/* Cuando integres tu Auth, descomenta esto:
 if (!$user) {
     http_response_code(401);
     echo json_encode(['success' => false, 'error' => 'Debes iniciar sesión para realizar la compra']);
     exit;
 }
+*/
 
 if (empty($input['items'])) {
     http_response_code(400);

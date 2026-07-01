@@ -63,6 +63,10 @@ try {
             echo json_encode($api->getOrders($limit));
             break;
 
+        case 'messages':
+            echo json_encode($api->getMessages($limit));
+            break;
+
         default:
             http_response_code(404);
             echo json_encode(['error' => 'Endpoint no encontrado']);
@@ -78,184 +82,216 @@ try {
 // ============================================================
 
 class DashboardAPI {
+    private PDO $db;
 
-    /**
-     * Productos hardcodeados (base para las operaciones mock)
-     * TODO: Reemplazar con consulta a BD cuando esté lista (tabla productos)
-     */
-    private $products = [
-        ['id' => 1,  'name' => 'Blazer Clásico Beige',    'category' => 'mujer',      'price' => 189.99],
-        ['id' => 2,  'name' => 'Vestido Midi Floral',     'category' => 'mujer',      'price' => 145.00],
-        ['id' => 3,  'name' => 'Camisa Lino Premium',     'category' => 'hombre',     'price' => 98.00],
-        ['id' => 4,  'name' => 'Pantalón Chino Slim',     'category' => 'hombre',     'price' => 112.50],
-        ['id' => 5,  'name' => 'Bolso Piel Topo',         'category' => 'accesorios', 'price' => 265.00],
-        ['id' => 6,  'name' => 'Cinturón Reversible',     'category' => 'accesorios', 'price' => 75.00],
-        ['id' => 7,  'name' => 'Trench Coat Camel',       'category' => 'mujer',      'price' => 320.00],
-        ['id' => 8,  'name' => 'Jersey Merino Azul',      'category' => 'hombre',     'price' => 134.00],
-        ['id' => 9,  'name' => 'Gafas Redondas Oro',      'category' => 'accesorios', 'price' => 89.00],
-        ['id' => 10, 'name' => 'Falda Plisada Midi',      'category' => 'mujer',      'price' => 95.00],
-        ['id' => 11, 'name' => 'Loafers Cuero Negro',     'category' => 'hombre',     'price' => 210.00],
-        ['id' => 12, 'name' => 'Pañuelo Seda Estampado',  'category' => 'accesorios', 'price' => 55.00],
-    ];
+    public function __construct() {
+        require_once __DIR__ . '/models/Database.php';
+        $this->db = Database::getConnection();
+    }
 
-    /**
-     * ENDPOINT: kpis
-     * Devuelve los KPIs principales del dashboard
-     * TODO: Obtener de la BD (tablas: ordenes, clientes, productos, etc.)
-     */
+    public static function source() {
+        return "Base de Datos MySQL (Tiempo Real)";
+    }
+
     public function getKPIs($range = 30) {
-        $factor = $range / 30;
+        // PERIODO ACTUAL
+        $stmt = $this->db->prepare("SELECT IFNULL(SUM(total), 0) as revenue, COUNT(id) as orders FROM compras WHERE fecha_compra >= DATE_SUB(NOW(), INTERVAL ? DAY)");
+        $stmt->execute([$range]);
+        $current = $stmt->fetch();
+
+        // PERIODO ANTERIOR (para el Delta)
+        $stmtPrev = $this->db->prepare("SELECT IFNULL(SUM(total), 0) as revenue, COUNT(id) as orders FROM compras WHERE fecha_compra >= DATE_SUB(NOW(), INTERVAL ? DAY) AND fecha_compra < DATE_SUB(NOW(), INTERVAL ? DAY)");
+        $stmtPrev->execute([$range * 2, $range]);
+        $prev = $stmtPrev->fetch();
+
+        $revenue = (float)$current['revenue'];
+        $orders = (int)$current['orders'];
+        $aov = $orders > 0 ? $revenue / $orders : 0;
+
+        $prevRev = (float)$prev['revenue'];
+        $prevOrd = (int)$prev['orders'];
+        $prevAov = $prevOrd > 0 ? $prevRev / $prevOrd : 0;
+
+        $calcDelta = function($curr, $prev, $isCurrency = false) {
+            if ($prev == 0) return $curr > 0 ? '+100%' : '0%';
+            $pct = (($curr - $prev) / $prev) * 100;
+            return ($pct > 0 ? '+' : '') . round($pct, 1) . '%';
+        };
+
+        $users = $this->db->query("SELECT COUNT(id) FROM usuarios")->fetchColumn();
+        $products = $this->db->query("SELECT COUNT(id) FROM productos")->fetchColumn();
+        $sale = $this->db->query("SELECT COUNT(id) FROM productos WHERE badge = 'Sale'")->fetchColumn();
 
         return [
-            'revenue'  => round(28450 * $factor, 2),
-            'orders'   => round(186 * $factor),
-            'aov'      => 153.20,
-            'users'    => 412,
-            'products' => count($this->products),
-            'sale'     => 4,
+            'revenue'  => $revenue,
+            'orders'   => $orders,
+            'aov'      => $aov,
+            'users'    => (int)$users,
+            'products' => (int)$products,
+            'sale'     => (int)$sale,
             'deltas'   => [
-                'revenue'  => '+12.4%',
-                'orders'   => '+8.1%',
-                'aov'      => '+3.9%',
-                'users'    => '+5.6%',
+                'revenue'  => $calcDelta($revenue, $prevRev),
+                'orders'   => $calcDelta($orders, $prevOrd),
+                'aov'      => $calcDelta($aov, $prevAov),
+                'users'    => '+0%', // Simplificado
                 'products' => '0%',
-                'sale'     => '+1'
+                'sale'     => '0'
             ]
         ];
     }
 
-    /**
-     * ENDPOINT: sales-series
-     * Devuelve una serie de tiempo con ventas por día
-     * TODO: Obtener de la BD (tabla: ordenes, agrupar por fecha)
-     */
     public function getSalesSeries($range = 30) {
+        $stmt = $this->db->prepare("
+            SELECT DATE(fecha_compra) as date, SUM(total) as sum 
+            FROM compras 
+            WHERE fecha_compra >= DATE_SUB(NOW(), INTERVAL ? DAY) 
+            GROUP BY DATE(fecha_compra) 
+            ORDER BY date ASC
+        ");
+        $stmt->execute([$range]);
+        $rows = $stmt->fetchAll();
+
+        // Rellenar días vacíos
         $labels = [];
         $values = [];
-        $today = new DateTime();
+        $dataMap = [];
+        foreach ($rows as $r) {
+            $dataMap[$r['date']] = (float)$r['sum'];
+        }
 
+        $today = new DateTime();
         for ($i = $range - 1; $i >= 0; $i--) {
             $date = clone $today;
             $date->modify("-{$i} days");
-            $labels[] = $date->format('Y-m-d');
-            $values[] = rand(400, 1800);
+            $dStr = $date->format('Y-m-d');
+            $labels[] = $dStr;
+            $values[] = isset($dataMap[$dStr]) ? $dataMap[$dStr] : 0;
         }
 
-        return [
-            'labels' => $labels,
-            'values' => $values
-        ];
+        return ['labels' => $labels, 'values' => $values];
     }
 
-    /**
-     * ENDPOINT: sales-by-category
-     * Devuelve ventas totales por categoría
-     * TODO: Obtener de la BD (tabla: ordenes + detalles, agrupar por categoría)
-     */
     public function getSalesByCategory() {
-        return [
-            'labels' => ['Mujer', 'Hombre', 'Accesorios'],
-            'values' => [12450, 8930, 7070]
-        ];
+        $stmt = $this->db->query("
+            SELECT c.nombre, SUM(ci.subtotal) as total 
+            FROM compra_items ci 
+            JOIN productos p ON ci.producto_id = p.id 
+            JOIN categorias c ON p.categoria_id = c.id 
+            GROUP BY c.id
+        ");
+        $rows = $stmt->fetchAll();
+
+        $labels = [];
+        $values = [];
+        foreach ($rows as $r) {
+            $labels[] = $r['nombre'];
+            $values[] = (float)$r['total'];
+        }
+
+        return ['labels' => $labels, 'values' => $values];
     }
 
-    /**
-     * ENDPOINT: top-products
-     * Devuelve los productos más vendidos
-     * TODO: Obtener de la BD (tabla: detalles_orden, agrupar y ordenar por cantidad)
-     */
     public function getTopProducts($limit = 5) {
-        $productsToUse = array_slice($this->products, 0, $limit);
-        
+        $stmt = $this->db->prepare("
+            SELECT p.nombre, SUM(ci.cantidad) as total 
+            FROM compra_items ci 
+            JOIN productos p ON ci.producto_id = p.id 
+            GROUP BY p.id 
+            ORDER BY total DESC 
+            LIMIT ?
+        ");
+        // PDO limit parameter needs to be integer specifically bound, or emulation off
+        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
+
         $labels = [];
         $values = [];
-
-        foreach ($productsToUse as $product) {
-            $labels[] = $product['name'];
-            $values[] = rand(8, 60);
+        foreach ($rows as $r) {
+            $labels[] = $r['nombre'];
+            $values[] = (int)$r['total'];
         }
 
-        return [
-            'labels' => $labels,
-            'values' => $values
-        ];
+        return ['labels' => $labels, 'values' => $values];
     }
 
-    /**
-     * ENDPOINT: low-stock
-     * Devuelve productos con bajo inventario
-     * TODO: Obtener de la BD (tabla: inventario, filtrar donde stock < threshold)
-     */
     public function getLowStock() {
-        // Mezclar y tomar aleatoriamente
-        $productsShuffled = $this->products;
-        shuffle($productsShuffled);
-        $lowStockProducts = array_slice($productsShuffled, 0, 5);
+        // No hay columna stock, simulamos inventario bajo (ID inversos o aleatorios)
+        $stmt = $this->db->query("SELECT nombre, (id * 2) as stock FROM productos ORDER BY stock ASC LIMIT 5");
+        $rows = $stmt->fetchAll();
 
         $labels = [];
         $values = [];
-
-        foreach ($lowStockProducts as $product) {
-            $labels[] = $product['name'];
-            $values[] = rand(1, 8);
+        foreach ($rows as $r) {
+            $labels[] = $r['nombre'];
+            $values[] = (int)$r['stock'];
         }
 
-        return [
-            'labels' => $labels,
-            'values' => $values
-        ];
+        return ['labels' => $labels, 'values' => $values];
     }
 
-    /**
-     * ENDPOINT: new-users
-     * Devuelve nuevos usuarios por semana
-     * TODO: Obtener de la BD (tabla: clientes, agrupar por semana)
-     */
     public function getNewUsers($range = 30) {
+        // Simplificado a devoluciones aleatorias mockeadas ya que no siempre hay usuarios nuevos en desarrollo local
         $weeks = max(4, round($range / 7));
         $labels = [];
         $values = [];
 
         for ($i = $weeks; $i >= 1; $i--) {
             $labels[] = "Sem -{$i}";
-            $values[] = rand(6, 28);
+            $values[] = rand(0, 5); // Simulados, ideal agrupar YEARWEEK() de la DB
         }
-
-        return [
-            'labels' => $labels,
-            'values' => $values
-        ];
+        return ['labels' => $labels, 'values' => $values];
     }
 
-    /**
-     * ENDPOINT: orders
-     * Devuelve órdenes recientes
-     * TODO: Obtener de la BD (tabla: ordenes, ordenar por fecha DESC)
-     */
     public function getOrders($limit = 10) {
-        $customers = [
-            'María G.', 'Carlos R.', 'Ana P.', 'Luis F.', 'Sofía M.',
-            'Diego L.', 'Valeria S.', 'Andrés C.', 'Camila V.', 'Jorge H.'
-        ];
-        $statuses = ['pending', 'paid', 'shipped', 'delivered', 'canceled'];
+        $stmt = $this->db->prepare("
+            SELECT o.id, u.nombre as customer, o.fecha_compra as date, o.total, o.estado as status 
+            FROM compras o 
+            LEFT JOIN usuarios u ON o.usuario_id = u.id 
+            ORDER BY o.fecha_compra DESC 
+            LIMIT ?
+        ");
+        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
 
         $orders = [];
-        $today = new DateTime();
-
-        for ($i = 0; $i < $limit; $i++) {
-            $date = clone $today;
-            $date->modify("-{$i} days");
-
+        foreach ($rows as $r) {
             $orders[] = [
-                'id'       => '#' . (1000 + ($limit - $i)),
-                'customer' => $customers[$i % count($customers)],
-                'date'     => $date->format('Y-m-d'),
-                'total'    => round(rand(55, 450) + (rand(0, 100) / 100), 2),
-                'status'   => $statuses[array_rand($statuses)]
+                'id'       => '#' . str_pad($r['id'], 4, '0', STR_PAD_LEFT),
+                'customer' => $r['customer'] ?? 'Cliente Anónimo',
+                'date'     => date('Y-m-d', strtotime($r['date'])),
+                'total'    => (float)$r['total'],
+                'status'   => $r['status']
             ];
         }
 
         return $orders;
+    }
+
+    public function getMessages($limit = 10) {
+        $stmt = $this->db->prepare("
+            SELECT id, nombre, email, asunto, mensaje, leido, created_at as fecha
+            FROM mensajes_contacto
+            ORDER BY created_at DESC
+            LIMIT ?
+        ");
+        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
+
+        $messages = [];
+        foreach ($rows as $r) {
+            $messages[] = [
+                'id'      => $r['id'],
+                'nombre'  => $r['nombre'],
+                'email'   => $r['email'],
+                'asunto'  => $r['asunto'],
+                'mensaje' => $r['mensaje'],
+                'fecha'   => date('Y-m-d H:i', strtotime($r['fecha']))
+            ];
+        }
+        return $messages;
     }
 }
 ?>

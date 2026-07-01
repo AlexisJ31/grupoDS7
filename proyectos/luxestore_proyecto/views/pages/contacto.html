@@ -121,8 +121,28 @@
           <form class="contact-form" id="contactForm" action="#" method="post" novalidate
                 onsubmit="
                   event.preventDefault();
-                  document.getElementById('contactForm').style.display='none';
-                  document.getElementById('successMsg').style.display='block';
+                  const form = this;
+                  const formData = new FormData(form);
+                  const data = Object.fromEntries(formData.entries());
+                  
+                  // Combinar nombre y apellido en el campo 'nombre' que espera la API
+                  data.nombre = data.nombre + ' ' + data.apellido;
+
+                  fetch('../../api/contact.php', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(data)
+                  })
+                  .then(res => res.json())
+                  .then(res => {
+                      if(res.success) {
+                          form.style.display='none';
+                          document.getElementById('successMsg').style.display='block';
+                      } else {
+                          alert('Error: ' + res.error);
+                      }
+                  })
+                  .catch(err => alert('Error al enviar el mensaje.'));
                 ">
 
             <div class="form-row">
