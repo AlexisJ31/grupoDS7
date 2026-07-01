@@ -1,39 +1,42 @@
-function register() {
+async function register() {
+  let user = document.getElementById("newUser").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let pass = document.getElementById("newPass").value.trim();
+  let confirmPass = document.getElementById("confirmPass").value.trim();
+  let errorMsg = document.getElementById("errorMsg");
 
-    let user = document.getElementById("newUser").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let pass = document.getElementById("newPass").value.trim();
-    let confirmPass = document.getElementById("confirmPass").value.trim();
+  errorMsg.innerText = "";
+  errorMsg.style.color = "#b94545";
 
-    let errorMsg = document.getElementById("errorMsg");
+  if (user === "" || email === "" || pass === "" || confirmPass === "") {
+    errorMsg.innerText = "Todos los campos son obligatorios";
+    return;
+  }
 
-    errorMsg.innerText = "";
-    errorMsg.style.color = "#b94545";
+  if (!email.includes("@") || !email.includes(".")) {
+    errorMsg.innerText = "Correo inválido";
+    return;
+  }
 
-    if (user === "" || email === "" || pass === "" || confirmPass === "") {
-        errorMsg.innerText = "❌ Todos los campos son obligatorios";
-        return;
-    }
+  if (pass.length < 6) {
+    errorMsg.innerText = "La contraseña debe tener al menos 6 caracteres";
+    return;
+  }
 
-    if (!email.includes("@") || !email.includes(".")) {
-        errorMsg.innerText = "❌ Correo inválido";
-        return;
-    }
+  if (pass !== confirmPass) {
+    errorMsg.innerText = "Las contraseñas no coinciden";
+    return;
+  }
 
-    if (pass.length < 6) {
-        errorMsg.innerText = "❌ La contraseña debe tener al menos 6 caracteres";
-        return;
-    }
+  const result = await handleRegister(user, email, pass);
 
-    if (pass !== confirmPass) {
-        errorMsg.innerText = "❌ Las contraseñas no coinciden";
-        return;
-    }
-
+  if (result.success) {
     errorMsg.style.color = "#2e7d4f";
-    errorMsg.innerText = "✔ Usuario registrado correctamente";
-
+    errorMsg.innerText = "Cuenta creada correctamente";
     setTimeout(() => {
-        window.location.href = "login.html";
+      window.location.href = "login.html";
     }, 1200);
+  } else {
+    errorMsg.innerText = result.error;
+  }
 }

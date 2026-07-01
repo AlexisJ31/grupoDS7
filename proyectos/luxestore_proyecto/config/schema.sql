@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS productos (
     descripcion TEXT,
     precio DECIMAL(10,2) NOT NULL,
     precio_anterior DECIMAL(10,2) NULL,
-    emoji VARCHAR(20),
+    imagen VARCHAR(255),
     badge VARCHAR(20),
     activo TINYINT(1) DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     telefono VARCHAR(20),
     direccion TEXT,
     auth_token VARCHAR(255) UNIQUE,
+    rol VARCHAR(20) DEFAULT 'cliente',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
