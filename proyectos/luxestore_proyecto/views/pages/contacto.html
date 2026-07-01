@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contacto – LUXE STORE</title>
+  <link rel="stylesheet" href="../../css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <a href="../index.html">
+        <img src="../../logoStore.png" alt="LUXE STORE"/>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="tienda.html">Tienda</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="contacto.html" class="active">Contacto</a></li>
+    </ul>
+    <div class="nav-icons">
+      <a href="tienda.html" class="icon-btn" aria-label="Tienda">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="tienda.html" class="icon-btn cart-btn" aria-label="Tienda">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </a>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Inicio</a>
+    <a href="tienda.html">Tienda</a>
+    <a href="nosotros.html">Nosotros</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <p class="breadcrumb"><a href="../index.html">Inicio</a> / Contacto</p>
+    <h1>Contáctanos</h1>
+    <p>Estamos aquí para ayudarte en lo que necesites</p>
+  </div>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section class="section" id="contacto">
+    <div class="container contact-grid">
+
+      <!-- INFO -->
+      <aside>
+        <h2 class="animate" style="font-family:var(--font-display);font-size:2rem;font-weight:300;margin-bottom:1.5rem;">Hablemos</h2>
+        <p class="animate" style="color:var(--gray);line-height:1.8;margin-bottom:2rem;">
+          Nuestro equipo de atención al cliente está disponible para responder tus preguntas sobre pedidos, tallas, envíos y más. No dudes en escribirnos.
+        </p>
+
+        <div class="contact-item animate">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-detail">
+            <h4>Dirección</h4>
+            <p>Av. Balboa, Torre LUXE, Piso 12<br/>Ciudad de Panamá, Panamá</p>
+          </div>
+        </div>
+
+        <div class="contact-item animate">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg>
+          </div>
+          <div class="contact-detail">
+            <h4>Teléfono</h4>
+            <p>+507 6000-1234<br/>Lun–Vie 9am–6pm</p>
+          </div>
+        </div>
+
+        <div class="contact-item animate">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="contact-detail">
+            <h4>Correo</h4>
+            <p>hola@luxestore.com<br/>soporte@luxestore.com</p>
+          </div>
+        </div>
+
+        <div class="contact-item animate">
+          <div class="contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </div>
+          <div class="contact-detail">
+            <h4>Redes Sociales</h4>
+            <p>@luxestore en Instagram, Facebook y TikTok</p>
+          </div>
+        </div>
+
+        <!-- HORARIO -->
+        <div class="animate" style="margin-top:2.5rem;padding:1.5rem;background:var(--light);border-radius:2px;">
+          <h4 style="font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;">Horario de atención</h4>
+          <table style="width:100%;font-size:0.85rem;border-collapse:collapse;">
+            <tbody>
+              <tr><td style="padding:0.4rem 0;color:var(--gray);">Lunes – Viernes</td><td style="text-align:right;font-weight:500;">9:00am – 6:00pm</td></tr>
+              <tr><td style="padding:0.4rem 0;color:var(--gray);">Sábados</td><td style="text-align:right;font-weight:500;">10:00am – 4:00pm</td></tr>
+              <tr><td style="padding:0.4rem 0;color:var(--gray);">Domingos</td><td style="text-align:right;font-weight:500;">Cerrado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+
+      <!-- ===== FORMULARIO DE CONTACTO ===== -->
+      <div class="animate">
+        <div style="background:white;padding:2.5rem;box-shadow:var(--shadow);border-radius:2px;">
+          <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;margin-bottom:2rem;">Envíanos un mensaje</h3>
+
+          <form class="contact-form" id="contactForm" action="#" method="post" novalidate
+                onsubmit="
+                  event.preventDefault();
+                  document.getElementById('contactForm').style.display='none';
+                  document.getElementById('successMsg').style.display='block';
+                ">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required
+                       minlength="2" autocomplete="given-name"/>
+              </div>
+              <div class="form-group">
+                <label for="apellido">Apellido *</label>
+                <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required
+                       minlength="2" autocomplete="family-name"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Correo electrónico *</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" required
+                     autocomplete="email"/>
+            </div>
+
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+507 0000-0000"
+                     autocomplete="tel" pattern="[\+\d\s\-]{7,20}"/>
+            </div>
+
+            <div class="form-group">
+              <label for="asunto">Asunto *</label>
+              <select id="asunto" name="asunto" required>
+                <option value="">Seleccionar tema...</option>
+                <option value="pedido">Consulta sobre pedido</option>
+                <option value="envio">Envíos y entrega</option>
+                <option value="devolucion">Devoluciones</option>
+                <option value="producto">Información de producto</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="mensaje">Mensaje *</label>
+              <textarea id="mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..."
+                        required minlength="10" rows="5"></textarea>
+            </div>
+
+            <div class="form-group" style="display:flex;align-items:flex-start;gap:0.75rem;">
+              <input type="checkbox" id="privacidad" name="privacidad" required
+                     style="margin-top:3px;accent-color:var(--gold);"/>
+              <label for="privacidad" style="font-size:0.82rem;color:var(--gray);text-transform:none;letter-spacing:0;font-weight:400;">
+                He leído y acepto la <a href="#" style="color:var(--gold);">política de privacidad</a> y los <a href="#" style="color:var(--gold);">términos y condiciones</a>.
+              </label>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width:100%;">
+              Enviar mensaje
+            </button>
+
+          </form>
+
+          <!-- MENSAJE DE ÉXITO -->
+          <div id="successMsg" style="display:none;text-align:center;padding:2rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:1rem;"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h3 style="font-family:var(--font-display);font-size:1.8rem;font-weight:300;margin-bottom:0.75rem;">¡Mensaje enviado!</h3>
+            <p style="color:var(--gray);">Gracias por contactarnos. Te responderemos en menos de 24 horas.</p>
+            <button onclick="
+              document.getElementById('contactForm').reset();
+              document.getElementById('contactForm').style.display='block';
+              document.getElementById('successMsg').style.display='none';
+            " class="btn-primary" style="margin-top:1.5rem;">Enviar otro mensaje</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script src="../../controllers/main.js"></script>
+</body>
+</html>
