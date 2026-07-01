@@ -584,7 +584,7 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 
 /* ===== LOGO IMG ===== */
 .nav-logo img {
-  height: 38px;
+  height: 50px;
   width: auto;
 }
 .footer-brand .nav-logo img {
